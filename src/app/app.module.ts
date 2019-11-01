@@ -6,6 +6,8 @@ import { HeaderComponent } from './header/header.component';
 import { ProductComponent } from './product/product.component';
 import { ProductsListComponent } from './product/products-list/products-list.component';
 import { ProductItemComponent } from './product/products-list/product-item/product-item.component';
+import { ProductsService } from './product/products.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { ProductItemComponent } from './product/products-list/product-item/produ
     ProductItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

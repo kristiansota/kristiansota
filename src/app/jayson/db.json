@@ -1,0 +1,33 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Dell Alienware T510",
+      "price": 100.00,
+      "description": "Gaming PC With 8gb Graphics Card",
+      "imagePath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png"
+    },
+    {
+      "id": 1,
+      "name": "Dell Alienware T510",
+      "price": 100.00,
+      "description": "Gaming PC With 8gb Graphics Card",
+      "imagePath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png"
+    },
+    {
+      "id": 1,
+      "name": "Dell Alienware T510",
+      "price": 100.00,
+      "description": "Gaming PC With 8gb Graphics Card",
+      "imagePath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png"
+    },
+    {
+      "id": 1,
+      "name": "Dell Alienware T510",
+      "price": 100.00,
+      "description": "Gaming PC With 8gb Graphics Card",
+      "imagePath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png"
+    }
+    
+  ]
+}

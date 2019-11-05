@@ -14,7 +14,7 @@ export class ProductsService {
         });
     }
 
-    // products: Product[] = [];
+    products: Product[] = [];
     
       public getProducts(): Observable <Product[]>{
           return this.http.get<Product[]>('http://localhost:3000/products');

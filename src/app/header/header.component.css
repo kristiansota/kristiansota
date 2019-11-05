@@ -1,33 +1,60 @@
-.input-group    {
-    margin-top: 45px;
+.fluid-1    {
+    padding-top: 30px;
+    padding-bottom: 70px ;
+    background-color: #121111;
+}
+
+h1  {
+    color: #E4000D;
+    font-family: cursive;
+    
 }
 
 .cart-user  {
     margin-top: 45px;
 }
 
+.cart-button {
+    background-color: #EA0F1C;
+    border: none;
+}
+
+.cart-button:hover   {
+    background-color: #BD000B;
+    transition: 0.5s;
+}
+
 #button2    {
     margin-left: 10px;
 }
 
-.navbar   {
-    margin-top: 50px;
-    align-items: center;
+.navbar {
+    background-color: #E4000D;
 }
 
-.mynav   {
-    padding: 6px;
-    margin-left: 38%;
+.fluid-2{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #E4000D;
 }
 
-.con1   {
-    margin-top: 50px;
+.nav li a  {
+    color: #ffffff;
+    font-family: "Times New Roman";
+    font-size: 16px;
 }
 
-#firstpic   {
-    margin-top: 40px;
-	height: 580px;
-	width: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
+.nav li a:hover {
+    background-color: #BD000B;
+    transition: 0.7s;
+    border-radius: 8px;
 }
+
+.nav {
+    margin-left: 80px;
+}
+
+.nav li {
+    padding-left: 10px;
+}
+

@@ -11,6 +11,7 @@ import { ProductsService } from './product/products.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
+import { CartService } from './cart.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo:"/home", pathMatch: 'full' },
@@ -34,7 +35,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ProductsService],
+  providers: [ProductsService,CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

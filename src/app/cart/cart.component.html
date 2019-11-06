@@ -18,12 +18,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>IMAGE</td>
-                    <td>NAME</td>
-                    <td>@PRICE</td>
-                    <td><button type="button" class="btn btn-danger pull-right">Remove <span class="glyphicon glyphicon-minus"></span> </button></td>
+                  <tr *ngFor="let cartP of cartProducts; let i = index">
+                    <th style="vertical-align: middle;" scope="row">{{i+1}}</th>
+                    <td>
+                        <img [src]="cartP.imagePath" alt="{{cartP.name}}" class="img-responsive" style="max-height: 120px;">
+                    </td>
+                    <td style="vertical-align: middle;">
+                        {{cartP.name}}
+                    </td>
+                    <td style="vertical-align: middle;">
+                        ${{cartP.price}}
+                    </td>
+                    <td style="vertical-align: middle;">
+                        <button (click)="deleteFromCart(i)" type="button" class="btn btn-danger pull-right">Remove <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

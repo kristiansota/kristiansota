@@ -6,14 +6,14 @@ export class Product {
     public imagePath: string;
 
     constructor(
-        id: number, 
+        id:number,
         name: string,
         price: number, 
         description: string,
         imagePath: string
         )
     {
-        this.id = id;
+        this.id=id;
         this.name = name;
         this.price = price;
         this.description = description;

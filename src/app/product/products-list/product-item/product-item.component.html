@@ -1,13 +1,20 @@
 <div class="col-md-4 product-frame">
-        <a class="list-group-item clearfix product-item">
-            <div class="itemDescription ">
+        <div class="list-group-item clearfix product-item">
+            <div style="border-radius: 25px;" class="itemDescription ">
+                <button (click)="updateProduct()" class="btn btn-primary btn-xs pull-left">
+                    <span class="glyphicon glyphicon-circle-arrow-up"></span>
+                </button>
+                <button (click)="deleteProduct()" class="btn btn-danger btn-xs pull-right">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <br>
                 <strong><h4 class="list-group-item-heading">{{product.name}}</h4></strong>
                 <hr>
                 <span class="img-span">
-                    <img [src]="product.imagePath" alt="{{product.name}}" class="img-responsive" style="max-height: 220px;">
+                    <img [src]="product.imagePath" alt="{{product.name}}" class="img-responsive set-fixed-image-height">
                 </span>
                 <hr>
-                <p class="list-group-item-text">{{product.description}}</p>
+                <p class="list-group-item-text pDesc">{{product.description}}</p>
                 <br>
                 <p class="list-group-item-text">{{product.price}}$</p>
                 <hr>
@@ -16,5 +23,5 @@
                     <span class="glyphicon glyphicon-shopping-cart"></span>  Add to Cart
                 </a>
             </div>
-        </a>
+        </div>
     </div>

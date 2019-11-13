@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="login-form">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h2 class="text-center">Log in</h2>
+            <hr>   
+            <div class="form-group">
+                <input formControlName="username" type="text" class="form-control" placeholder="Username">
+                <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched" 
+                class="help-block">Please enter your username!</span>
+                <br>
+                <input formControlName="password" type="password" class="form-control" placeholder="Password">
+                <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched" 
+                class="help-block">Please enter your password!</span>
+                <br>
+                <button [disabled]="!loginForm.valid" type="submit" class="btn btn-danger btn-block">Log in</button>
+            </div>        
+        </form>
+        <p class="text-center"><a routerLink="/sign-up">Create an Account</a></p>
+    </div>
+</div>

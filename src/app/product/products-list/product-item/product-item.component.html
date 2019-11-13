@@ -8,15 +8,15 @@
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
                 <br>
-                <strong><h4 class="list-group-item-heading">{{product.name}}</h4></strong>
+                <strong><h4 class="list-group-item-heading">{{product?.name}}</h4></strong>
                 <hr>
                 <span class="img-span">
                     <img [src]="product.imagePath" alt="{{product.name}}" class="img-responsive set-fixed-image-height">
                 </span>
                 <hr>
-                <p class="list-group-item-text pDesc">{{product.description}}</p>
+                <p class="list-group-item-text pDesc">{{product?.description}}</p>
                 <br>
-                <p class="list-group-item-text">{{product.price}}$</p>
+                <p class="list-group-item-text">{{product?.price}}$</p>
                 <hr>
                 <br>
                 <a (click)="addToCart()" class="btn btn-danger">

@@ -14,11 +14,15 @@ export class ProductsListComponent implements OnInit {
 
   newProduct: Product = new Product(null,"", null, "","");
 
-  constructor(private productService: ProductsService) { }
+  constructor(private productService: ProductsService) {
+
+    console.log(this.products);
+   }
 
   ngOnInit() {
     this.productService.getProducts()
     .subscribe(data => this.products = data);
+    
   }
 
   onSubmit() {

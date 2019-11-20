@@ -1,10 +1,10 @@
 <div class="col-md-4 product-frame">
         <div class="list-group-item clearfix product-item">
             <div style="border-radius: 25px;" class="itemDescription ">
-                <button (click)="updateProduct()" class="btn btn-primary btn-xs pull-left">
+                <button *ngIf="getAdminStatus()" (click)="updateProduct(product)" class="btn btn-primary btn-xs pull-left">
                     <span class="glyphicon glyphicon-circle-arrow-up"></span>
                 </button>
-                <button (click)="deleteProduct()" class="btn btn-danger btn-xs pull-right">
+                <button *ngIf="getAdminStatus()" (click)="deleteProduct()" class="btn btn-danger btn-xs pull-right">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
                 <br>

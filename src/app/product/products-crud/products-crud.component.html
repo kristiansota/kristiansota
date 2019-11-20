@@ -1,0 +1,23 @@
+<button class="btn btn-danger btn-sm pull-right" (click)="onClose()">
+    <span class="glyphicon glyphicon-remove">
+    </span>
+</button>
+<h3>Crud Operations</h3>
+<br>
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="form-group">
+        <label for="productName">Product Name</label>
+        <input [(ngModel)]="newProduct.name" type="text" name="productName" class="form-control" required>
+            <br>
+        <label for="productProce">Product Price</label>
+        <input [(ngModel)]="newProduct.price" type="number" name="productPrice" class="form-control" required>
+            <br>
+        <label for="produtDescription">Product Description</label>
+        <input [(ngModel)]="newProduct.description" type="text" name="productDescription" class="form-control" required>
+            <br>
+        <label for="imagePath">Image Path</label>
+        <input [(ngModel)]="newProduct.imagePath" type="text" name="imagePath" class="form-control" required>
+            <br>
+        <button type="submit" class="btn btn-succes">{{ isUpdate ? 'Update' : 'Add New Product' }}</button>
+       </div>
+</form>

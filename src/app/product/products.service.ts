@@ -10,6 +10,7 @@ export class ProductsService {
     
     constructor(private http: HttpClient){
         this.getProducts().subscribe(data => {
+            this.products = data
             console.log(data);
         });
     }
@@ -26,9 +27,9 @@ export class ProductsService {
 
       onDeleteProduct(product: Product): Observable<void>{
         return this.http.delete<void>(`http://localhost:3000/products/${product.id}`);
-    }
+      }
 
-    onUpdateProduct(p: Product){
-        return this.http.put(`http://localhost:3000/products/${p.id}`,p);
-    }
+      onUpdateProduct(p: Product){
+            return this.http.put(`http://localhost:3000/products/${p.id}`,p);
+      }
 }

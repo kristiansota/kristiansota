@@ -1,25 +1,9 @@
 <app-header></app-header>
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
-            <form (ngSubmit)="onSubmit()" #form="ngForm">
-                <div class="form-group">
-                    <label for="productName">Product Name</label>
-                    <input [(ngModel)]="newProduct.name" type="text" name="productName" class="form-control" required>
-                    <br>
-                    <label for="productProce">Product Price</label>
-                    <input [(ngModel)]="newProduct.price" type="number" name="productPrice" class="form-control" required>
-                    <br>
-                    <label for="produtDescription">Product Description</label>
-                    <input [(ngModel)]="newProduct.description" type="text" name="productDescription" class="form-control" required>
-                    <br>
-                    <label for="imagePath">Image Path</label>
-                    <input [(ngModel)]="newProduct.imagePath" type="text" name="imagePath" class="form-control" required>
-                    <br>
-                    <button type="submit" class="btn btn-succes">Add New Product</button>
-                </div>
-            </form>
-            <button (click)="finalUpdate()" class="btn btn-success">Update</button>
+        <div class="col-md-12">
+            <button class="btn btn-primary btn-sm" (click)="openDialog()" >CRUD</button>
+            
         </div>
     </div>
 

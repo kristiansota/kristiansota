@@ -11,8 +11,11 @@
                     <a routerLink="/cart" class="btn btn-info cart-button">
                         <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
                     </a>
-                    <button routerLink="/log-in" class="btn btn-secondary" id="button2">
+                    <button *ngIf="!getLoginStatus()" routerLink="/log-in" class="btn btn-secondary" id="button2">
                         <span class="glyphicon glyphicon-user"></span> Log In
+                    </button>
+                    <button *ngIf="getLoginStatus()" (click)="logout()" routerLink="/log-in" class="btn btn-secondary" id="button2">
+                        <span class="glyphicon glyphicon-user"></span> Sign Out
                     </button>
                 </div>
             </div>

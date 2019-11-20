@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,7 +12,8 @@ import { UserService } from '../user.service';
 export class SignUpComponent implements OnInit {
   
   constructor(private fb: FormBuilder,
-              private userService: UserService) { }
+              private userService: UserService,
+              private router: Router) { }
 
   public signupForm: FormGroup;
 
@@ -56,6 +58,8 @@ export class SignUpComponent implements OnInit {
         );
 
         this.signupForm.reset();
+        alert('You have Successfully registered');
+        this.router.navigate(['/home']);
       }//else
 
     

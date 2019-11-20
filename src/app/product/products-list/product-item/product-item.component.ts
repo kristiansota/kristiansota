@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../product.model';
 import { CartService } from 'src/app/cart.service';
 import { ProductsService } from '../../products.service';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-product-item',
@@ -18,7 +19,8 @@ export class ProductItemComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private cartService: CartService,
-              private productsService: ProductsService) { }
+              private productsService: ProductsService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.productsService.getProducts()
@@ -33,7 +35,11 @@ export class ProductItemComponent implements OnInit {
     this.productDeleted.emit(this.product);
   }
 
-  updateProduct(){
+  updateProduct(product: Product){
     this.productUpdated.emit(this.product);
+  }
+
+  getAdminStatus(){
+    return this.userService.getAdminStatus();
   }
 }

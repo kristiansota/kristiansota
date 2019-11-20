@@ -6,7 +6,7 @@ export class User {
     public name: string;
     public age: number;
     public gender: string;
-    public role?: string ;
+    public role?: number ;
 
     constructor(username: string, 
                 password: string, 
@@ -14,7 +14,7 @@ export class User {
                 name: string, 
                 age: number, 
                 gender: string,
-                role: string)
+                role: number)
     {
         this.username = username;
         this.password = password;

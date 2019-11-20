@@ -19,12 +19,16 @@ import { LogInComponent } from './user/log-in/log-in.component';
 import { SignupService } from './user/sign-up/signup.service';
 import { UserService } from './user/user.service';
 import { SignUpDeactivate } from './user/signupDeactivate.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { ProductsCrudComponent } from './product/products-crud/products-crud.component';
+import { AuthGuardService } from './user/auth-guard.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo:"/home", pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'products', component: ProductsListComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart',canActivate: [AuthGuardService], component: CartComponent },
   { path: 'sign-up', component: SignUpComponent,
     canDeactivate: [SignUpDeactivate] },
   { path: 'log-in', component: LogInComponent }
@@ -41,16 +45,22 @@ const appRoutes: Routes = [
     CartComponent,
     UserComponent,
     SignUpComponent,
-    LogInComponent
+    LogInComponent,
+    ProductsCrudComponent
   ],
+
+  entryComponents: [ProductsCrudComponent],
+
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
-  providers: [ProductsService,CartService,SignupService,UserService,SignUpDeactivate],
+  providers: [ProductsService,CartService,SignupService,UserService,SignUpDeactivate,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

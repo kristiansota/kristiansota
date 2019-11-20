@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, TemplateRef } from '@angular/core';
 import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, NgForm } from '@angular/forms'
+import { UserService } from 'src/app/user/user.service';
+import { MatDialog } from '@angular/material'
+import { ProductsCrudComponent } from '../products-crud/products-crud.component';
+
 
 @Component({
   selector: 'app-products-list',
@@ -14,12 +18,14 @@ export class ProductsListComponent implements OnInit {
 
   newProduct: Product = new Product(null,"", null, "","");
 
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService,
+              private userService: UserService,
+              private dialog: MatDialog) {
 
-    console.log(this.products);
    }
 
   ngOnInit() {
+
     this.productService.getProducts()
     .subscribe(data => this.products = data);
     
@@ -29,6 +35,7 @@ export class ProductsListComponent implements OnInit {
     this.productService.addNewProduct(this.newProduct).subscribe(data => 
       {this.productService.getProducts().subscribe((productResponse: Product[]) => {this.products = productResponse});
     });
+    
   }
 
   onProductDeleted(p: Product, id:number){
@@ -38,20 +45,42 @@ export class ProductsListComponent implements OnInit {
   }
 
   onProductUpdated(p: Product){
-    this.newProduct = p;
+    /// this.newProduct = p;
+    this.updateProduct(p);
+
   }
 
-  finalUpdate() {
-    this.productService.onUpdateProduct(this.newProduct).subscribe( () => {
-      } );
+  getAdminStatus(){
+    return this.userService.getAdminStatus();
+  }
 
-      this.newProduct = {
-        id: null,
-        name: '',
-        price: null,
-        description: '',
-        imagePath: ''
-      };
+  openDialog(){
+    let dialogRef =this.dialog.open(ProductsCrudComponent, {
+      width: '60%'
+    });
+
+    dialogRef.afterClosed().subscribe(changed => {
+      if (changed) {
+        this.productService.getProducts()
+        .subscribe(data => this.products = data);
+      }
+    });
+    
+  }
+
+  updateProduct(product: Product) {
+    let dialogRef =this.dialog.open(ProductsCrudComponent, {
+      width: '60%',
+      data: product
+    });
+    
+    dialogRef.afterClosed().subscribe(changed => {
+      if (changed) {
+        this.productService.getProducts()
+        .subscribe(data => this.products = data);
+      }
+    });
+    
   }
 
 }

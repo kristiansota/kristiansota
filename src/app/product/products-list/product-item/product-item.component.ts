@@ -3,6 +3,7 @@ import { Product } from '../../product.model';
 import { CartService } from 'src/app/cart.service';
 import { ProductsService } from '../../products.service';
 import { UserService } from 'src/app/user/user.service';
+import { MatSnackBar } from '@angular/material'
 
 @Component({
   selector: 'app-product-item',
@@ -20,19 +21,32 @@ export class ProductItemComponent implements OnInit {
 
   constructor(private cartService: CartService,
               private productsService: ProductsService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.productsService.getProducts()
     .subscribe(data => this.products = data);
+
+    console.log(this.userService.getActualUserId());
   }
 
   addToCart(){
-    this.cartService.onAddToCart(this.product);
+    this.cartService.onAddToCart(this.product, this.userService.getActualUserId());
+
+    this.snackBar.open('You have successfully added the item to your cart !', 'OK', {
+      duration: 2500,
+      verticalPosition: 'top'
+     });
   }
 
   deleteProduct(){
     this.productDeleted.emit(this.product);
+
+    this.snackBar.open('Product Deleted !', 'OK', {
+      duration: 2500,
+      verticalPosition: 'top'
+     });
   }
 
   updateProduct(product: Product){

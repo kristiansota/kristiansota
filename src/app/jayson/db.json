@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 1,
-      "name": "Dell Alienaware121",
+      "name": "Dell Alienaware12",
       "price": 200,
       "description": "Gaming Laptop",
       "imagePath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png"
@@ -16,18 +16,9 @@
     },
     {
       "id": 3,
-      "name": "Dell Alienaware",
-      "price": 1112,
-      "description": "Gaming Laptopp",
-      "imagePath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png"
-    }
-  ],
-  "cart": [
-    {
-      "id": 2,
-      "name": "Dell Alienaware",
-      "price": 200,
-      "description": "Gaming Laptop",
+      "name": "Dell 4556",
+      "price": 1100,
+      "description": "Gaming PC",
       "imagePath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png"
     }
   ],
@@ -49,6 +40,7 @@
       "name": "Jorgo Mehilli",
       "age": 21,
       "gender": "male",
+      "role": 1,
       "id": 2
     },
     {
@@ -59,6 +51,18 @@
       "age": 22,
       "gender": "male",
       "id": 3
+    }
+  ],
+  "cart": [
+    {
+      "name": "Dell Alienaware12",
+      "price": 200,
+      "imgPath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png",
+      "description": "Gaming Laptop",
+      "p_id": 1,
+      "quantity": 4,
+      "userId": 3,
+      "id": 1
     }
   ]
 }

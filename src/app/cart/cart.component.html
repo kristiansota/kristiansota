@@ -12,6 +12,7 @@
                     <th scope="col"></th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -19,7 +20,7 @@
                   <tr *ngFor="let cartP of cartProducts; let i = index">
                     <th style="vertical-align: middle;" scope="row">{{i+1}}</th>
                     <td>
-                        <img [src]="cartP.imagePath" alt="{{cartP.name}}" class="img-responsive" style="max-height: 120px;">
+                        <img [src]="cartP.imgPath" alt="{{cartP.name}}" class="img-responsive" style="max-height: 120px;">
                     </td>
                     <td style="vertical-align: middle;">
                         {{cartP.name}}
@@ -28,7 +29,16 @@
                         ${{cartP.price}}
                     </td>
                     <td style="vertical-align: middle;">
-                        <button (click)="deleteFromCart(i)" type="button" class="btn btn-danger pull-right">Remove <span class="glyphicon glyphicon-minus"></span>
+                        <!-- <label *ngIf="!change">{{cartP.quantity}} / </label> -->
+                        
+                        <form  [formGroup]="quantityForm">
+                          <input required value="{{cartP.quantity}}" formControlName="newQuantity" type="number" step="1" min="1">
+                        </form>
+                        
+                    </td>
+                    <td style="vertical-align: middle;">
+                        <button (click)="updateQuantity(cartP)" class="btn btn-primary btn-sm">Update</button>
+                        <button (click)="deleteFromCart(i)" type="button" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-minus"></span> Remove
                         </button>
                     </td>
                   </tr>

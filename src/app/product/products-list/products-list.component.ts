@@ -31,13 +31,6 @@ export class ProductsListComponent implements OnInit {
     
   }
 
-  onSubmit() {
-    this.productService.addNewProduct(this.newProduct).subscribe(data => 
-      {this.productService.getProducts().subscribe((productResponse: Product[]) => {this.products = productResponse});
-    });
-    
-  }
-
   onProductDeleted(p: Product, id:number){
     this.productService.onDeleteProduct(p).subscribe( () => {
       this.products.splice(id,1);
@@ -65,7 +58,6 @@ export class ProductsListComponent implements OnInit {
         .subscribe(data => this.products = data);
       }
     });
-    
   }
 
   updateProduct(product: Product) {
@@ -80,7 +72,6 @@ export class ProductsListComponent implements OnInit {
         .subscribe(data => this.products = data);
       }
     });
-    
   }
 
 }

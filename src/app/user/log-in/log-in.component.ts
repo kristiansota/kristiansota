@@ -4,7 +4,8 @@ import { User } from '../user.model';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material'
-
+import { map, filter } from 'rxjs/operators';
+import { Observable } from 'rxjs/observable';
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
@@ -13,16 +14,18 @@ import { MatSnackBar } from '@angular/material'
 export class LogInComponent implements OnInit {
 
   public isLoggedin = false;
-
+  test;
   loginForm: FormGroup;
 
   users: User[] = [];
   index: number;
 
+  customUsers = [];
+
   constructor(private fb: FormBuilder,
               private userService: UserService,
               private router: Router,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -53,7 +56,7 @@ export class LogInComponent implements OnInit {
        } );
 
        this.loginForm.reset();
-       this.userService.isLoggedIn();
+       this.userService.isLoggedIn(foundUser[0]);
        this.router.navigate(['/home']);
     } else {
       this.snackBar.open('Your Username or Password is incorrect! Please try again !', 'OK', {
@@ -66,5 +69,28 @@ export class LogInComponent implements OnInit {
     console.log(this.userService.getAdminStatus());
 
   }
+
+  getMapUsers() {
+    let filteredName: string;
+     this.test =  this.userService.getUsers().pipe(
+      map(response => {
+        filteredName = response.filter(filtered => {
+          return filtered.age > 21;
+        })[0].name
+      }
+      ), map(() => filteredName)
+    );
+  }
+
+
+  //  testt(){
+  //   let obs = Observable.create((observer) => {
+  //     observer.next('a new value');
+  //   });
+  
+  
+  //   let subscribtion = obs.subscribe(data => console.log(data));
+  //  }
+
 
 }

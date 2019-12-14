@@ -23,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ProductsCrudComponent } from './product/products-crud/products-crud.component';
 import { AuthGuardService } from './user/auth-guard.service';
+import { AdminPanelComponent } from './user/admin-panel/admin-panel.component';
+import { UserCrudComponent } from './user/admin-panel/user-crud/user-crud.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo:"/home", pathMatch: 'full' },
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
   { path: 'cart',canActivate: [AuthGuardService], component: CartComponent },
   { path: 'sign-up', component: SignUpComponent,
     canDeactivate: [SignUpDeactivate] },
-  { path: 'log-in', component: LogInComponent }
+  { path: 'log-in', component: LogInComponent },
+  { path: 'admin-panel', component: AdminPanelComponent }
 ]
 
 @NgModule({
@@ -46,10 +49,12 @@ const appRoutes: Routes = [
     UserComponent,
     SignUpComponent,
     LogInComponent,
-    ProductsCrudComponent
+    ProductsCrudComponent,
+    AdminPanelComponent,
+    UserCrudComponent
   ],
 
-  entryComponents: [ProductsCrudComponent],
+  entryComponents: [ProductsCrudComponent,UserCrudComponent],
 
   imports: [
     BrowserModule,

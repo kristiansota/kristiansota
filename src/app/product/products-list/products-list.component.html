@@ -1,9 +1,8 @@
 <app-header></app-header>
-<div class="container">
-    <div class="row">
+<div style="text-align: center;" class="container">
+    <div class="row" *ngIf="getAdminStatus()">
         <div class="col-md-12">
-            <button class="btn btn-primary btn-sm" (click)="openDialog()" >CRUD</button>
-            
+            <button  class="btn btn-primary btn-sm" (click)="openDialog()" >CRUD</button>
         </div>
     </div>
 

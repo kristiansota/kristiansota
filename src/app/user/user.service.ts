@@ -7,9 +7,12 @@ import { User } from './user.model';
 @Injectable()
 export class UserService {
 
-  private isLoggedin = false;
+  isLoggedin = false;
   private isAdmin = false;
   users: User[] = [];
+  actualUserId: number;
+
+  // currentUser: Observable<User>;
 
   _url = 'http://localhost:3000/users';
 
@@ -20,7 +23,7 @@ export class UserService {
   });
    }
 
-  public getUsers(): Observable <User[]>{
+   getUsers(): Observable <User[]>{
     return this.http.get<User[]>(this._url);
 }
 
@@ -28,14 +31,26 @@ export class UserService {
     return this.http.post<any>(this._url,userData);
   }
 
-  isLoggedIn(){
+  onDeleteUser(user: User): Observable<void>{
+    return this.http.delete<void>(`http://localhost:3000/users/${user.id}`);
+  }
+
+  onUpdateUser(user: User){
+    return this.http.put<any>(`http://localhost:3000/users/${user.id}`,user);
+}
+
+  isLoggedIn(user: User){
    this.isLoggedin = true;
+   this.actualUserId = user.id
    localStorage.setItem('isLoggedin', JSON.stringify(this.isLoggedin));
+   localStorage.setItem('actualUserId', JSON.stringify(this.actualUserId));
   }
   
   isNotLoggedIn(){
    this.isLoggedin = false;
+   this.actualUserId = null;
    localStorage.removeItem('isLoggedin');
+   localStorage.removeItem('actualUserId');
   }
 
   getLoginStatus(): boolean{
@@ -70,13 +85,20 @@ export class UserService {
     return this.isAdmin;
   }
 
+  getActualUserId() {
+    this.actualUserId = JSON.parse(localStorage.getItem('actualUserId'));
+    return this.actualUserId;
+  }
+
   isAuthenticated(){
 
     const authObservable = Observable.create(observer => {
-      observer.next(this.isLoggedin);
+      observer.next(JSON.parse(localStorage.getItem('isLoggedin')));
     });
 
     return authObservable;
   }
+
+  
 
 }

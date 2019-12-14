@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Welcome Admin</h1>
+            <br>
+            <hr>
+            <button (click)="openDialog()" class="btn btn-primary btn-sm">Add new user</button>
+            <br>
+            <br>
+            <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Role</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let user of users; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td> {{user.username}} </td>
+                        <td> {{user.password}} </td>
+                        <td> {{user.email}} </td>
+                        <td> {{user.name}} </td>
+                        <td> {{user.age}} </td>
+                        <td> {{user.gender}} </td>
+                        <td> {{user.role}} </td>
+                        <td> <button (click)="updateUser(user)" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-circle-arrow-up"></span> </button> </td>
+                        <td> <button (click)="deleteUser(i)" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-remove"></span> </button> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+        </div>
+    </div>
+</div>
+

@@ -4,6 +4,7 @@ import { CartService } from 'src/app/cart.service';
 import { ProductsService } from '../../products.service';
 import { UserService } from 'src/app/user/user.service';
 import { MatSnackBar } from '@angular/material'
+import { CartProduct } from 'src/app/cart/cartProduct.model';
 
 @Component({
   selector: 'app-product-item',
@@ -18,6 +19,8 @@ export class ProductItemComponent implements OnInit {
   
 
   products: Product[] = [];
+  cartProducts = [];
+  cartIsEmpty: boolean;
 
   constructor(private cartService: CartService,
               private productsService: ProductsService,
@@ -28,16 +31,67 @@ export class ProductItemComponent implements OnInit {
     this.productsService.getProducts()
     .subscribe(data => this.products = data);
 
+    this.cartService.getCartProducts()
+    .subscribe(data => this.cartProducts = data);
+
     console.log(this.userService.getActualUserId());
   }
 
-  addToCart(){
-    this.cartService.onAddToCart(this.product, this.userService.getActualUserId());
+  addToCart(product: Product){
 
-    this.snackBar.open('You have successfully added the item to your cart !', 'OK', {
-      duration: 2500,
-      verticalPosition: 'top'
+    if(this.userService.getLoginStatus()){
+
+      if(this.cartProducts.length){
+
+        const foundProduct = this.cartProducts.filter(cartP => cartP.p_id === product.id);
+
+        if (!foundProduct.length){
+          this.cartService.onAddToCart(product, this.userService.getActualUserId());
+          this.cartProducts.push({
+            name: product.name,
+            price: product.price,
+            imgPath: product.imagePath,
+            description: product.description,
+            p_id: product.id,
+            quantity: 1,
+            userId: this.userService.getActualUserId()
+      });
+          this.snackBar.open('You have successfully added the item to your cart !', 'OK', {
+          duration: 2500,
+          verticalPosition: 'top'
      });
+    } else {
+        this.snackBar.open('This product has already been added to your cart !', '', {
+          duration: 3500,
+          verticalPosition: 'top'
+        });
+    }
+  } else {
+      this.cartService.onAddToCart(product, this.userService.getActualUserId());
+
+      this.snackBar.open('You have successfully added the item to your cart !', 'OK', {
+        duration: 2500,
+        verticalPosition: 'top'
+       });
+
+      this.cartProducts.push({
+        name: product.name,
+        price: product.price,
+        imgPath: product.imagePath,
+        description: product.description,
+        p_id: product.id,
+        quantity: 1,
+        userId: this.userService.getActualUserId()
+  });
+  }
+    } else {
+      this.snackBar.open('You have to log in first to add items to your cart !', 'OK', {
+        duration: 3500,
+        verticalPosition: 'top'
+       });
+    }
+
+    
   }
 
   deleteProduct(){

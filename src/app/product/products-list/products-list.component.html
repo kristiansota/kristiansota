@@ -2,12 +2,20 @@
 <div style="text-align: center;" class="container">
     <div class="row" *ngIf="getAdminStatus()">
         <div class="col-md-12">
-            <button  class="btn btn-primary btn-sm" (click)="openDialog()" >CRUD</button>
+            <button  class="btn btn-primary btn-sm" (click)="openDialog()" >Add New Product</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+                <div class=" form-inline form-group mx-sm-4 mb-2">
+                    <label style="padding: 5px;" >Search Products:</label>
+                    <input [(ngModel)]="searchText" class="form-control" placeholder="Search Products">
+                </div>
         </div>
     </div>
 
     <div class="row items-row">
-        <app-product-item *ngFor="let productEl of products; let id =index" 
+        <app-product-item *ngFor="let productEl of products | filter: searchText; let id = index" 
         [product] = "productEl"
         [id] = "id"
         (productDeleted) = "onProductDeleted($event,id)"

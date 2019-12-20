@@ -6,19 +6,6 @@
                     <h1>TECHWSite</h1>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="cart-user pull-right">
-                    <a routerLink="/cart" class="btn btn-info cart-button">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
-                    </a>
-                    <button *ngIf="!getLoginStatus()" routerLink="/log-in" class="btn btn-secondary" id="button2">
-                        <span class="glyphicon glyphicon-user"></span> Log In
-                    </button>
-                    <button *ngIf="getLoginStatus()" (click)="logout()" routerLink="/log-in" class="btn btn-secondary" id="button2">
-                        <span class="glyphicon glyphicon-user"></span> Sign Out
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -42,15 +29,16 @@
                 <li ><a routerLink="/home" routerLinkActive="active">Home <span class="sr-only"></span></a></li>
                 <li ><a routerLink="/products" routerLinkActive="active">Products</a></li>
             </ul>
-            <div class="pull-right">
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search"></span> Search
-                        </button>
-                    </div>
-                </form>
+            <div class="cart-user pull-right">
+                <a routerLink="/cart" class="btn btn-info cart-button">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+                </a>
+                <button *ngIf="!getLoginStatus()" routerLink="/log-in" class="btn btn-secondary" id="button2">
+                    <span class="glyphicon glyphicon-user"></span> Log In
+                </button>
+                <button *ngIf="getLoginStatus()" (click)="logout()" routerLink="/log-in" class="btn btn-secondary" id="button2">
+                    <span class="glyphicon glyphicon-user"></span> Sign Out
+                </button>
             </div>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

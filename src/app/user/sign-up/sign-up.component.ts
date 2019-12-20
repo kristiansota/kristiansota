@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material'
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +14,8 @@ export class SignUpComponent implements OnInit {
   
   constructor(private fb: FormBuilder,
               private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar) { }
 
   public signupForm: FormGroup;
 
@@ -41,15 +43,21 @@ export class SignUpComponent implements OnInit {
 
       if (this.users.filter(u => u.username === this.signupForm.value.username).length){
 
-        alert('This username has been taken');
+        this.snackBar.open('This Username has already been taken!', 'OK', {
+          duration: 2500,
+          verticalPosition: 'top'
+         });
       }
       
       else if (this.users.filter(u => u.email === this.signupForm.value.email).length){
 
-        alert('This email address has already been registered');
+        this.snackBar.open('This e-mail adress has already been used!', 'OK', {
+          duration: 2500,
+          verticalPosition: 'top'
+         });
       }
 
-      else{
+      else if (this.signupForm.valid){
 
         this.userService.onSignUp(this.signupForm.value)
         .subscribe(
@@ -58,9 +66,18 @@ export class SignUpComponent implements OnInit {
         );
 
         this.signupForm.reset();
-        alert('You have Successfully registered');
+        this.snackBar.open('You have successfully regjistered!', 'OK', {
+          duration: 2500,
+          verticalPosition: 'top'
+         });
         this.router.navigate(['/home']);
-      }//else
+      } else {
+
+        this.snackBar.open('Please fill in your credentials!', 'OK', {
+          duration: 2500,
+          verticalPosition: 'top'
+         });
+      }
 
     
   }

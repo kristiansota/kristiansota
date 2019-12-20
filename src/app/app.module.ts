@@ -25,6 +25,14 @@ import { ProductsCrudComponent } from './product/products-crud/products-crud.com
 import { AuthGuardService } from './user/auth-guard.service';
 import { AdminPanelComponent } from './user/admin-panel/admin-panel.component';
 import { UserCrudComponent } from './user/admin-panel/user-crud/user-crud.component';
+import { FilterPipe } from './product/filter.pipe';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { environment } from '../environments/environment'; // Angular CLI environment
+import { appReducers } from './cart/store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CartEffects } from './cart/store/cart.effects';
+
 
 const appRoutes: Routes = [
   { path: '', redirectTo:"/home", pathMatch: 'full' },
@@ -39,6 +47,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HeaderComponent,
     ProductComponent,
@@ -51,7 +60,8 @@ const appRoutes: Routes = [
     LogInComponent,
     ProductsCrudComponent,
     AdminPanelComponent,
-    UserCrudComponent
+    UserCrudComponent,
+    FilterPipe
   ],
 
   entryComponents: [ProductsCrudComponent,UserCrudComponent],
@@ -63,7 +73,13 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([CartEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [ProductsService,CartService,SignupService,UserService,SignUpDeactivate,AuthGuardService],
   bootstrap: [AppComponent]

@@ -28,8 +28,8 @@ export class CartService {
 
     cartProducts: Product[] = [];
 
-    public getCartProducts(): Observable <Product[]>{
-        return this.httpcart.get<Product[]>(`http://localhost:3000/users/${this.userService.getActualUserId()}/cart`);
+    public getCartProducts(): Observable <any[]>{
+        return this.httpcart.get<any[]>(`http://localhost:3000/users/${this.userService.getActualUserId()}/cart`);
     }
 
     onAddToCart(p: Product,actualUserId: number) {

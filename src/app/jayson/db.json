@@ -40,7 +40,7 @@
       "name": "Jorgo Mehilli",
       "age": 21,
       "gender": "male",
-      "role": 1,
+      "role": 0,
       "id": 2
     },
     {
@@ -50,6 +50,7 @@
       "name": "Kevin Ruska",
       "age": 22,
       "gender": "male",
+      "role": 0,
       "id": 3
     }
   ],
@@ -60,9 +61,19 @@
       "imgPath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png",
       "description": "Gaming Laptop",
       "p_id": 1,
-      "quantity": 4,
+      "quantity": 2,
       "userId": 3,
       "id": 1
+    },
+    {
+      "name": "Dell Alienaware12",
+      "price": 200,
+      "imgPath": "https://upload.wikimedia.org/wikipedia/commons/8/88/AVADirect_God_Mode_Extreme_Gaming_PC.png",
+      "description": "Gaming Laptop",
+      "p_id": 1,
+      "quantity": 1,
+      "userId": 1,
+      "id": 3
     }
   ]
 }

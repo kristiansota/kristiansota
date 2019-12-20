@@ -29,8 +29,9 @@ export class AdminPanelComponent implements OnInit {
   }
 
   deleteUser(i: number){
-    this.userService.onDeleteUser(this.users[i]).subscribe( () => {this.users.splice(i,1); 
-    console.log("You Deleted an item"); },
+    this.userService.onDeleteUser(this.users[i]).subscribe( () => {
+    this.users.splice(i,1);
+    console.log("You Deleted a user!"); },
     error => {
       console.log(error);
     });

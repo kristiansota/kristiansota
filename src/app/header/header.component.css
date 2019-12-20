@@ -11,16 +11,16 @@ h1  {
 }
 
 .cart-user  {
-    margin-top: 45px;
+    margin-top: 10px;
 }
 
 .cart-button {
-    background-color: #EA0F1C;
+    background-color: #BD000B;
     border: none;
 }
 
 .cart-button:hover   {
-    background-color: #BD000B;
+    background-color: #EA0F1f;
     transition: 0.5s;
 }
 

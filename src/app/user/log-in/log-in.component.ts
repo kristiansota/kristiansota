@@ -83,14 +83,4 @@ export class LogInComponent implements OnInit {
   }
 
 
-  //  testt(){
-  //   let obs = Observable.create((observer) => {
-  //     observer.next('a new value');
-  //   });
-  
-  
-  //   let subscribtion = obs.subscribe(data => console.log(data));
-  //  }
-
-
 }

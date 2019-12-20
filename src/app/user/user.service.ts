@@ -49,6 +49,7 @@ export class UserService {
   isNotLoggedIn(){
    this.isLoggedin = false;
    this.actualUserId = null;
+   
    localStorage.removeItem('isLoggedin');
    localStorage.removeItem('actualUserId');
   }
@@ -99,6 +100,5 @@ export class UserService {
     return authObservable;
   }
 
-  
 
 }

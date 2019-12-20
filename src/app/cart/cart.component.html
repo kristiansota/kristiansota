@@ -32,13 +32,13 @@
                         <!-- <label *ngIf="!change">{{cartP.quantity}} / </label> -->
                         
                         <form  [formGroup]="quantityForm">
-                          <input required value="{{cartP.quantity}}" formControlName="newQuantity" type="number" step="1" min="1">
+                          <input style="padding: 3px;" required value="{{cartP.quantity}}" formControlName="newQuantity" type="number" step="1" min="1">
+                          <button style="margin-left: 5px;" (click)="updateQuantity(cartP)" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok"></span></button>
                         </form>
                         
                     </td>
                     <td style="vertical-align: middle;">
-                        <button (click)="updateQuantity(cartP)" class="btn btn-primary btn-sm">Update</button>
-                        <button (click)="deleteFromCart(i)" type="button" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-minus"></span> Remove
+                        <button (click)="deleteFromCart(i)" type="button" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
                   </tr>

@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product/product.model';
 import { CartService } from '../cart.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material'
+
+import { GetCartProducts } from './store/cart.actions';
+import { Store, select } from '@ngrx/store';
+import { initialAppState, IAppState } from './store/app.state';
+import { selectCartList } from './store/cart.selector';
+
+
 
 @Component({
   selector: 'app-cart',
@@ -11,16 +17,21 @@ import { MatSnackBar } from '@angular/material'
 })
 export class CartComponent implements OnInit {
 
-  cartProducts: Product[] = [];
+  cartProducts = [];
   quantityForm: FormGroup;
+  // cartProducts$ = this.store.pipe(select(selectCartList));
 
   constructor(private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private cartService: CartService) { }
+    private _snackBar: MatSnackBar,
+    private cartService: CartService,
+    private store: Store<IAppState>) { }
 
   ngOnInit() {
     this.cartService.getCartProducts()
     .subscribe(data => this.cartProducts = data);
+
+    // this.store.dispatch(new GetCartProducts());
 
     this.quantityForm = this.fb.group({
       newQuantity: [null,Validators.required]
@@ -28,17 +39,30 @@ export class CartComponent implements OnInit {
   }
 
   deleteFromCart(i: number){
-    this.cartService.onDeleteFromCart(this.cartProducts[i]).subscribe( () => 
-    {this.cartProducts.splice(i,1); 
-    console.log("You Deleted an item"); },
-    error => {
+
+    let snackBarRef = this.snackBar.open('Are you sure you want to delete this item from your cart?', 'Yes!',  {
+      duration: 5000,
+      verticalPosition: 'top'
+     });
+
+     snackBarRef.onAction().subscribe(() => {
+
+      this.cartService.onDeleteFromCart(this.cartProducts[i]).subscribe( () => 
+      {this.cartProducts.splice(i,1); 
+
+      console.log("You removed an item");},
+      
+      error => {
       console.log(error);
     });
 
-    this.snackBar.open('You have removed the item from your cart !', 'OK', {
-      duration: 2500,
+
+    this.snackBar.open('Product removed successfully!', '', {
+      duration: 3500,
       verticalPosition: 'top'
      });
+    })
+
   }
 
 
@@ -53,6 +77,7 @@ export class CartComponent implements OnInit {
       verticalPosition: 'top'
      } );
   } else {
+    this.quantityForm.reset();
     this.snackBar.open('The quantity of a product must be at least 1 !', 'OK', {
       duration: 2500,
       verticalPosition: 'top'
